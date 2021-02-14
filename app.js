@@ -28,6 +28,11 @@ const showImages = (images) => {
   })
 
 }
+document.getElementById("search").addEventListener("keypress", function(event) {
+   if (event.key == "Enter") {
+    searchBtn.click();
+   }
+})
 
 const getImages = (query) => {
   fetch(`https://pixabay.com/api/?key=${KEY}=${query}&image_type=photo&pretty=${query}`)
@@ -35,6 +40,7 @@ const getImages = (query) => {
     .then(data => showImages(data.hits))
     .catch(err => console.log(err))
 }
+
 
 let slideIndex = 0;
 const selectItem = (event, img) => {
@@ -73,12 +79,12 @@ const createSlider = () => {
   document.querySelector('.main').style.display = 'block';
   // hide image aria
  
-   imagesArea.style.display = 'block';
-      const duration = document.getElementById('doration').value || 4000;
+   imagesArea.style.display = 'none';
   
+    
+     const duration = document.getElementById('doration').value;
 
-      
-  sliders.forEach(slide => {  
+    sliders.forEach(slide => {  
     let item = document.createElement('div')
     item.className = "slider-item";
     item.innerHTML = `<img class="w-100"
@@ -105,7 +111,7 @@ const changeItem = index => {
 const changeSlide = (index) => {
 
   const items = document.querySelectorAll('.slider-item');
-  console.log(items);
+ 
   if (index < 0) {
     slideIndex = items.length - 1
     index = slideIndex;
@@ -137,3 +143,4 @@ sliderBtn.addEventListener('click',function () {
   
 
 })
+ 
