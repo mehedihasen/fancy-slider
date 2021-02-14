@@ -8,6 +8,7 @@ const sliderContainer = document.getElementById('sliders');
 let sliders = [];
 
 
+
 // If this key doesn't work
 // Find the name in the url and go to their website
 // to create your own api key
@@ -38,26 +39,31 @@ const getImages = (query) => {
 let slideIndex = 0;
 const selectItem = (event, img) => {
   let element = event.target;
-  element.classList.add('added');
+  element.classList.add("added");
  
   let item = sliders.indexOf(img);
+//   console.log(img);
   if (item === -1) {
-    sliders.push(img);
+   const pu = sliders.push(img);
+
   } else {
-    alert('Hey, Already added !')
+   const pop = sliders.pop(img);
+
   }
 }
 var timer
 const createSlider = () => {
   // check slider image length
+  
   if (sliders.length < 2) {
     alert('Select at least 2 image.')
     return;
   }
-  // crate slider previous next area
-  sliderContainer.innerHTML = '';
-  const prevNext = document.createElement('div');
-  prevNext.className = "prev-next d-flex w-100 justify-content-between align-items-center";
+
+   // crate slider previous next area
+   sliderContainer.innerHTML = '';
+   const prevNext = document.createElement('div');
+   prevNext.className = "prev-next d-flex w-100 justify-content-between align-items-center";
   prevNext.innerHTML = ` 
   <span class="prev" onclick="changeItem(-1)"><i class="fas fa-chevron-left"></i></span>
   <span class="next" onclick="changeItem(1)"><i class="fas fa-chevron-right"></i></span>
@@ -66,16 +72,22 @@ const createSlider = () => {
   sliderContainer.appendChild(prevNext)
   document.querySelector('.main').style.display = 'block';
   // hide image aria
-  imagesArea.style.display = 'none';
-  const duration = document.getElementById('duration').value || 1000;
-  sliders.forEach(slide => {
+ 
+   imagesArea.style.display = 'block';
+      const duration = document.getElementById('doration').value || 4000;
+  
+
+      
+  sliders.forEach(slide => {  
     let item = document.createElement('div')
     item.className = "slider-item";
     item.innerHTML = `<img class="w-100"
     src="${slide}"
     alt="">`;
-    sliderContainer.appendChild(item)
-  })
+
+   sliderContainer.appendChild(item);
+      
+  });
   changeSlide(0)
   timer = setInterval(function () {
     slideIndex++;
@@ -87,11 +99,13 @@ const createSlider = () => {
 const changeItem = index => {
   changeSlide(slideIndex += index);
 }
+ 
 
 // change slide item
 const changeSlide = (index) => {
 
   const items = document.querySelectorAll('.slider-item');
+  console.log(items);
   if (index < 0) {
     slideIndex = items.length - 1
     index = slideIndex;
@@ -117,6 +131,9 @@ searchBtn.addEventListener('click', function () {
   sliders.length = 0;
 })
 
-sliderBtn.addEventListener('click', function () {
-  createSlider()
+sliderBtn.addEventListener('click',function () {
+
+    createSlider();
+  
+
 })
