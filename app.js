@@ -42,21 +42,30 @@ const getImages = (query) => {
 }
 
 
+
+
 let slideIndex = 0;
 const selectItem = (event, img) => {
+  
   let element = event.target;
+  
   element.classList.add("added");
  
   let item = sliders.indexOf(img);
-//   console.log(img);
+ 
+ 
+
+    
   if (item === -1) {
-   const pu = sliders.push(img);
+   sliders.push(img);
+
 
   } else {
-   const pop = sliders.pop(img);
-
+    sliders.splice( img, 1);
+   
   }
-}
+
+ }
 var timer
 const createSlider = () => {
   // check slider image length
@@ -80,10 +89,11 @@ const createSlider = () => {
   // hide image aria
  
    imagesArea.style.display = 'none';
-  
+   const duration = document.getElementById('doration').value;
+   if (duration >= 0){
+    document.getElementById('doration').value = 1000;
+  }
     
-     const duration = document.getElementById('doration').value;
-
     sliders.forEach(slide => {  
     let item = document.createElement('div')
     item.className = "slider-item";
@@ -99,6 +109,8 @@ const createSlider = () => {
     slideIndex++;
     changeSlide(slideIndex);
   }, duration);
+
+
 }
 
 // change slider index 
@@ -139,8 +151,7 @@ searchBtn.addEventListener('click', function () {
 
 sliderBtn.addEventListener('click',function () {
 
-    createSlider();
   
-
+    createSlider();
 })
- 
+  
