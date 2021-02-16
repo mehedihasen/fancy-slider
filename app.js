@@ -61,7 +61,11 @@ const selectItem = (event, img) => {
 
 
   } else {
-    sliders.splice( img, 1);
+ 
+   let set= sliders.filter(valu => valu!=img); 
+   sliders.push(set);
+   
+  
    
   }
 
@@ -90,8 +94,9 @@ const createSlider = () => {
  
    imagesArea.style.display = 'none';
    const duration = document.getElementById('doration').value;
+   let setDuration= 1000;
    if (duration >= 0){
-    document.getElementById('doration').value = 1000;
+    document.getElementById('doration').value = setDuration;
   }
     
     sliders.forEach(slide => {  
@@ -154,4 +159,13 @@ sliderBtn.addEventListener('click',function () {
   
     createSlider();
 })
+
+
+
+const handleSpinner = () => {
+  const spinner = document.getElementById('spinner');
+  spinner.classList.toggle("d-none");
+}
   
+
+
