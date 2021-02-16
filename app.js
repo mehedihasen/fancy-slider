@@ -59,10 +59,10 @@ const selectItem = (event, img) => {
   if (item === -1) {
    sliders.push(img);
 
-
   } else {
 
     delete sliders[item];
+    element.classList.toggle('added');
 
   }
 
