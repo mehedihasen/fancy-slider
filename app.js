@@ -90,31 +90,35 @@ const createSlider = () => {
   // hide image aria
  
    imagesArea.style.display = 'none';
-   const duration = document.getElementById('doration').value;
-   let setDuration= 1000;
-   if (duration >= 0){
-    document.getElementById('doration').value = setDuration;
-  }
+
     
-    sliders.forEach(slide => {  
-    let item = document.createElement('div')
-    item.className = "slider-item";
-    item.innerHTML = `<img class="w-100"
-    src="${slide}"
-    alt="">`;
-
-   sliderContainer.appendChild(item);
+ const duration = document.getElementById('doration').value;
+    if (duration >= 1000) {
       
-  });
-  changeSlide(0)
-  timer = setInterval(function () {
-    slideIndex++;
-    changeSlide(slideIndex);
-  }, duration);
+    
+    
+      sliders.forEach(slide => {  
+        let item = document.createElement('div')
+        item.className = "slider-item";
+        item.innerHTML = `<img class="w-100"
+        src="${slide}"
+        alt="">`;
+    
+       sliderContainer.appendChild(item);
+          
+      });
+      changeSlide(0)
+      timer = setInterval(function () {
+        slideIndex++;
+        changeSlide(slideIndex);
+      }, duration);
+    }
 
-
+else{
+  alert("sorry, plase give in on 1000 ");
+  }
+  
 }
-
 // change slider index 
 const changeItem = index => {
   changeSlide(slideIndex += index);
